@@ -1,6 +1,5 @@
 package fr.formation.api;
 import java.math.BigDecimal;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
