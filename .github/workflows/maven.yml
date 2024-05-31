@@ -5,8 +5,8 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
 name: Java CI with Maven
+
 
 
 on:
@@ -50,6 +50,7 @@ jobs:
       timeout-minutes: 5
       with:
         scanMetadataReportFile: target/sonar/report-task.txt
+
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
