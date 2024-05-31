@@ -29,3 +29,26 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Code coverage & scan SonarQube & packaging JAR
+      run: >
+        mvn
+        org.jacoco:jacoco-maven-plugin:prepare-agent
+        package
+        verify
+        org.jacoco:jacoco-maven-plugin:report
+        sonar:sonar
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+        -Dsonar.projectKey=groupe1
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: Qualité SonarQube
+      uses: sonarsource/sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      with:
+        scanMetadataReportFile: target/sonar/report-task.txt
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
