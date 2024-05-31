@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -33,7 +34,7 @@ public class ProduitApiControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @MockBean
     private ProduitRepository produitRepository;
 
     @MockBean
@@ -61,23 +62,26 @@ public class ProduitApiControllerTest {
          produit.setNom("stylos");
          produit.setPrix(new BigDecimal("10"));
  
-         Mockito.when(produitRepository.save(produit)).thenReturn(produit);
- 
+        // Mockito.when(produitRepository.save(produit)).thenReturn(produit);
+         Mockito.when(produitService.createProduit(ArgumentMatchers.any(Produit.class))).thenReturn(produit);
+
          // when
          this.mockMvc.perform(
             MockMvcRequestBuilders
-                .post("/ajout")
+                .post("/api/produit/ajout")
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(SecurityMockMvcRequestPostProcessors.csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.json(produit))
          )
 
-         //then
-         .andExpect(MockMvcResultMatchers.status().isCreated());
+         //then  
 
+
+         .andExpect(MockMvcResultMatchers.status().isCreated());
+         Mockito.verify(produitService).createProduit(ArgumentMatchers.any(Produit.class));
  
-         Mockito.verify(produitRepository).save(produit);
+         //Mockito.verify(produitRepository).save(produit);
      }
 
 
