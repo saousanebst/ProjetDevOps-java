@@ -91,7 +91,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: saousane/ajc-ci:Produit-java
+        tags: saousane/ajc-ci:Produit-java-groupe1
         
   deploy:
     needs: build
@@ -111,7 +111,7 @@ jobs:
               docker stop ajc-ci-saousane || true
               docker rm ajc-ci-saousane || true
               docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN_SERVER }}
-              docker run -d -p 8082:8080 --name ajc-ci-saousane --pull=always saousane/ajc-ci:groupe1-tag
+              docker run -d -p 8082:8080 --name ajc-ci-saousane --pull=always saousane/ajc-ci:Produit-java-groupe1
               exit
             "
               
