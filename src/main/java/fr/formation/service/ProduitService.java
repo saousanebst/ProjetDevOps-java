@@ -1,6 +1,8 @@
 package fr.formation.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,9 @@ private ProduitRepository produitRepository;
 // lister tout les produits
 public List<Produit> getAllProduit(){
 
-    return this.produitRepository.findAll();
+     return Optional
+                .ofNullable(this.produitRepository.findAll())
+                .orElse(new ArrayList<>());
 }
 
 

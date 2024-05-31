@@ -1,63 +1,52 @@
 package fr.formation.service;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+
 
 import fr.formation.repo.ProduitRepository;
 import fr.model.Produit;
 
-@SpringBootTest(classes = ProduitService.class)
 
+@SpringBootTest(classes = ProduitService.class)
+@ContextConfiguration(classes = ValidationAutoConfiguration.class)
 public class ProduitServiceTest {
-    @MockBean
+
+    
+    @Autowired
     private ProduitService produitService;
+
     @MockBean
     private ProduitRepository  produitRepository;
+
     @Test
     void shouldReturnList() {
-        // given
-        List<Produit> produits = new ArrayList<>();
-        Produit produit1 = new Produit();
-        produit1.setNom("cahier");
-        produit1.setPrix(new BigDecimal("2.0"));
-        Produit produit2 = new Produit();
+    
 
-        produit2.setNom("livre ");
-        produit2.setPrix(new BigDecimal("1.0"));
-
+    // given
+    List<Produit> laListe = new ArrayList<>();
         
-        produits.add(produit1);
-        produits.add(produit2);
+    laListe.add(new Produit());
+    
+    Mockito.when(this.produitRepository.findAll()).thenReturn(laListe);
+    
+    // when / then
+    Assertions.assertEquals(this.produitService.getAllProduit(), laListe);
 
-
-        // Mocking the service method
-       // when(this.produitService.getAllProduit()).thenReturn(produits);
-
-        // when
-       // List<Produit> result = this.produitService.getAllProduit();
-
-        // then
-        //assertEquals(produits, result);
-
-     Mockito.when(this.produitService.getAllProduit(ArgumentMatchers.any(Produit.class))).thenReturn(produits);
-        
-        // when / then
-       Assertions.assertEquals(this.produitService.getAllProduit(), produits);
-
-        //then
-     Mockito.verify(this.produitRepository, Mockito.times(1)).findAll();
-    }
+    // then
+    Mockito.verify(this.produitRepository, Mockito.times(1)).findAll();
+}
+   
+    
     
     @Test
     void shouldReturnListIfNull() {
