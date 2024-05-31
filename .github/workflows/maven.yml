@@ -16,7 +16,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -54,3 +54,9 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    - name: Partage du fichier Jar
+      uses: actions/upload-artifact@v3
+      with:
+          name: appjar
+          path: target/ci-groupe1.jar
+
