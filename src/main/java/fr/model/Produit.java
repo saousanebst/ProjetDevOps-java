@@ -37,8 +37,8 @@ public class Produit {
     public BigDecimal getPrix() {
         return prix;
     }
-    public void setPrix(BigDecimal prix) {
-        this.prix = prix;
+    public void setPrix(BigDecimal bigDecimal) {
+        this.prix = bigDecimal;
     }
 
 

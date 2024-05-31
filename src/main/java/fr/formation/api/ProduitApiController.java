@@ -14,7 +14,7 @@ import fr.model.Produit;
 
 @RestController
 @RequestMapping("/api/produit")
-public class ApiController {
+public class ProduitApiController {
     
 
 @Autowired
@@ -26,7 +26,7 @@ public List<Produit> FindAllProduit(){
     return produitservice.getAllProduit();}
 
 
-@PostMapping
+@PostMapping("/ajout")
 public Produit InsertProduit (@RequestBody Produit produit){
 
     return produitservice.createProduit(produit);
