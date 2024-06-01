@@ -18,9 +18,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 
+import fr.formation.model.Produit;
 import fr.formation.repo.ProduitRepository;
 import fr.formation.service.ProduitService;
-import fr.model.Produit;
 
 @WebMvcTest(ProduitApiController.class)
 @WithMockUser

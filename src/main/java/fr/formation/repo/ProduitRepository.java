@@ -2,9 +2,9 @@ package fr.formation.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import fr.model.Produit;
+import fr.formation.model.Produit;
 
-public interface ProduitRepository extends JpaRepository <Produit , String>{
+public interface ProduitRepository extends JpaRepository <Produit, String>{
 
 
 

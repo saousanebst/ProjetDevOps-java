@@ -12,9 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
-
+import fr.formation.model.Produit;
 import fr.formation.repo.ProduitRepository;
-import fr.model.Produit;
 
 
 @SpringBootTest(classes = ProduitService.class)

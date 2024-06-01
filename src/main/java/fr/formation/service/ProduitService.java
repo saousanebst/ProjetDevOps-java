@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.formation.model.Produit;
 import fr.formation.repo.ProduitRepository;
-import fr.model.Produit;
 
 @Service
 public class ProduitService {

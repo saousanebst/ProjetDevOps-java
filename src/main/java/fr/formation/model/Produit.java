@@ -1,18 +1,19 @@
-package fr.model;
+package fr.formation.model;
 
 import java.math.BigDecimal;
 
+import org.hibernate.annotations.UuidGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="produit")
 public class Produit {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @UuidGenerator
     private String id ;
 
     @Column(nullable = false)
